@@ -74,6 +74,20 @@ $body = @{
     CertFileName      = $P12File;
     EncryptedPassword = $P12Pass;
 }
+
+<#
+## Resulted in code 15008 - Unable to read the (%1%) file from the certificate store
+$pem_cert_data_file = 'C:\Temp\fullchain_base64.pem';
+$pem_cert_content = Get-Content $pem_cert_data_file;
+$body.CertFileContent = $pem_cert_content
+#>
+
+<#
+## Resulted in code 15008 - Unable to read the (%1%) file from the certificate store
+$pem_cert_content = [System.IO.File]::ReadAllBytes("$P12File");
+$body.CertFileContent = $pem_cert_content
+#>
+
 $certid = 1; ## Certificate id 1 is reserved for the server certificate (which is our goal here.)
 $certUrl = $urlRoot + "certificate/$($certid)?action=import12";
 Write-Host "`n`n$certUrl`n`n";
