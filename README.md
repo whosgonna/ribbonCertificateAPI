@@ -41,5 +41,8 @@ would be executed as follows:
 ```
 
 This fails with a code of `15026 - Certificate file data content cannot be empty or 
-exceed the maximum size limit %1%.`.
+exceed the maximum size limit %1%.`.  This isn't really shocking since the actual
+data for the certificate and key is not transmitted anywhere in this process.  It's
+not possible to send a web server the name of a local file and have the web server
+just read the file.
 
